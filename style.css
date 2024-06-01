@@ -1,0 +1,80 @@
+body {
+    background-color: black;
+    font-family: Ubuntu, Garamond, serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #DDE1E1;
+
+}
+
+#calc-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    border: solid black px;
+    /* box-shadow: 1px 1px 20px #DDE1E1; */
+    flex: 0 0 auto;
+    background-color: darkslategray;
+   
+}
+
+#display {
+    display: flex;
+    box-sizing: border-box;
+    height: 70px;
+    margin: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+   
+}
+
+button {
+    font-size: 30px;
+    font-weight: 700;
+    background-color: slategray;
+    color: #DDE1E1;
+    /* border: 1px; */
+}
+
+.row button {
+    height: 70px;
+    width: 90px;
+    
+}
+
+.row #zero {
+    width: 180px;
+}
+
+button:hover {
+    background-color: darkslategray;
+}
+
+.operate {
+    background-color: #725972;
+}
+
+.operate:hover {
+    background-color: #4F2F4F;
+}
+
+.func {
+    background-color: #727259;
+}
+
+.func:hover {
+    background-color: #4F4F2F;
+}
