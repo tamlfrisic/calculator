@@ -1,17 +1,17 @@
-const sum = function(array) {
-    return array.reduce(((acc, curr) => acc + curr), 0);
+function add(a, b) {
+    return a + b;
 }
 
-const difference = function(array) {
-    return array.reduce(((acc, curr) => acc - curr), 0);
+function subtract(a, b) {
+    return a - b;
 }
 
-const product = function(array) {
-    return array.reduce(((acc, curr) => acc * curr), 1);
+function multiply(a, b) {
+    return a * b;
 }
 
-const quotient = function(array) {
-    return array.reduce(((acc, curr) => acc / curr), 1);
+function divide(a, b) {
+    return a / b;
 }
 
 const power = function(a, b) {
