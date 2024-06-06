@@ -3,9 +3,20 @@ let operator;
 let operand2;
 let result;
 
-const calculator = document.querySelector("calc-body");
-const display = calculator.querySelector("display");
-const buttons = calculator.querySelectorAll("button");
+const calculator = document.querySelector("#calc-body");
+const display = calculator.querySelector("#display");
+const numbers = calculator.querySelectorAll(".number"); // handle by adding to display
+const funcs = calculator.querySelectorAll(".func"); // 
+const operators = calculator.querySelectorAll("operate"); // make sure result becomes new op1
+const dot = calculator.querySelector("#dot"); // limit to once per eq
+
+numbers.addEventListener("click", (event) => {
+    displayVal = display.createElement("p");
+    displayVal.textContent = event.target.textContent;
+    display.appendChild(displayVal); // but this will be a string
+    // get it so you can remove the #ids from the number btns
+});
+
 
 // if the button clicked is the clear button: 
 // clear.addEventListener("click", () => {
