@@ -9,24 +9,43 @@ const numbers = calculator.querySelectorAll(".number"); // handle by adding to d
 const funcs = calculator.querySelectorAll(".func"); // 
 const operators = calculator.querySelectorAll("operate"); // make sure result becomes new op1
 const dot = calculator.querySelector("#dot"); // limit to once per eq
+const buttons = calculator.querySelector(".buttons");
 
-numbers.addEventListener("click", (event) => {
-    displayVal = display.createElement("p");
-    displayVal.textContent = event.target.textContent;
-    display.appendChild(displayVal); // but this will be a string
+// console.log(numbers);
+
+buttons.addEventListener("click", (event) => {
+    let buttonClass = event.target.className;
+    let buttonID = event.target.id;
+    alert(buttonClass + buttonID);
+    if (buttonID === "clear") {
+        clear();
+    }
+    if (buttonID === "backspace") {
+        del();
+    }
+
+    if (buttonClass === "number") {
+        display.textContent += event.target.innerText;
+    } 
+    // display.appendChild(displayVal); // but this will be a string
     // get it so you can remove the #ids from the number btns
 });
 
 
-// if the button clicked is the clear button: 
-// clear.addEventListener("click", () => {
-//     operand1 = "";
-//     operand2 = "";
-//     operator = "";
-//     result = "";
-//     display.replaceChildren();
-//     
-// })
+function clear() {
+    operand1 = "";
+    operand2 = "";
+    operator = "";
+    result = "";
+    display.replaceChildren();  
+}
+
+function del() {
+    let str = display.innerText.slice(0, -1);
+    display.textContent = str;
+    console.log(str);
+    
+}
 
 function add(a, b) {
     return a + b;
