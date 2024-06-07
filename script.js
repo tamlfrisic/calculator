@@ -23,6 +23,10 @@ buttons.addEventListener("click", (event) => {
         del();
     }
 
+    if (buttonID === "percent") {
+        display.textContent = display.textContent / 100;
+    }
+
     if (buttonClass === "number") {
         display.textContent += event.target.innerText;
     } 
@@ -77,10 +81,6 @@ function divide(a, b) {
     return a / b;
 }
 
-function percent(a) {
-    return a / 100;
-}
-
 function operate(operator, operand1, operand2) {
     // but operate should only be called if the equals sign is pressed
     // should i use something similar to the event listener and target.choice + 
@@ -93,9 +93,7 @@ function operate(operator, operand1, operand2) {
         result = multiply(operand1, operand2);
     } else if (operator == "/") {
         result =divide(operand1, operand2);
-    } else if (operator == "%") {
-        result = percent(operand1);
-    }
+    } 
     return result;
 }
 
