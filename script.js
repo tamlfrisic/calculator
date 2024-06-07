@@ -8,7 +8,6 @@ const display = calculator.querySelector("#display");
 const numbers = calculator.querySelectorAll(".number"); // handle by adding to display
 const funcs = calculator.querySelectorAll(".func"); // 
 const operators = calculator.querySelectorAll("operate"); // make sure result becomes new op1
-const dot = calculator.querySelector("#dot"); // limit to once per eq
 const buttons = calculator.querySelector(".buttons");
 
 // console.log(numbers);
@@ -27,6 +26,11 @@ buttons.addEventListener("click", (event) => {
         display.textContent = display.textContent / 100;
     }
 
+    if (buttonID === "dot") {
+        if (!display.textContent.includes(".")) {
+            display.textContent += ".";
+        }
+    }
     if (buttonClass === "number") {
         display.textContent += event.target.innerText;
     } 
@@ -35,9 +39,7 @@ buttons.addEventListener("click", (event) => {
         console.log("op1: " + operand1);
         operator = event.target.innerText;
         display.textContent = operator;
-        // console.log("op: " + operator);
         display.replaceChildren(); 
-        
     }
     if (buttonID === "equals") {
         operand2 = display.textContent;
