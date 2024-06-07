@@ -5,12 +5,7 @@ let result;
 
 const calculator = document.querySelector("#calc-body");
 const display = calculator.querySelector("#display");
-const numbers = calculator.querySelectorAll(".number"); // handle by adding to display
-const funcs = calculator.querySelectorAll(".func"); // 
-const operators = calculator.querySelectorAll("operate"); // make sure result becomes new op1
 const buttons = calculator.querySelector(".buttons");
-
-// console.log(numbers);
 
 buttons.addEventListener("click", (event) => {
     let buttonClass = event.target.className;
@@ -23,15 +18,18 @@ buttons.addEventListener("click", (event) => {
     }
 
     if (buttonID === "percent") {
+        delOperator();
         display.textContent = display.textContent / 100;
     }
 
     if (buttonID === "dot") {
+        delOperator();
         if (!display.textContent.includes(".")) {
             display.textContent += ".";
         }
     }
     if (buttonClass === "number") {
+        delOperator();
         display.textContent += event.target.innerText;
     } 
     if (buttonClass === "operate") {
@@ -39,18 +37,27 @@ buttons.addEventListener("click", (event) => {
         console.log("op1: " + operand1);
         operator = event.target.innerText;
         display.textContent = operator;
-        display.replaceChildren(); 
     }
     if (buttonID === "equals") {
         operand2 = display.textContent;
-        console.log(`op1 = ${operand1}  op: ${operator} op2 = ${operand2}`);
+        // console.log(`op1 = ${operand1}  op: ${operator} op2 = ${operand2}`);
         result = operate(operator, operand1, operand2);
+        // console.log("result: " + result);
+        result = round(result);
+        // console.log("rounded result: " + result);
         display.innerText = result;
         operand1 = result;
     }
-    // display.appendChild(displayVal); // but this will be a string
-    // get it so you can remove the #ids from the number btns
 });
+
+function round() {
+    if (result.toString().length > 10) {
+        result = result.toFixed(5);
+        return result;
+    } else {
+       return result;
+    }
+}
 
 function clear() {
     operand1 = "";
@@ -58,6 +65,15 @@ function clear() {
     operator = "";
     result = "";
     display.replaceChildren();  
+}
+
+function delOperator() {
+    if ((display.textContent.includes("/")) ||
+        (display.textContent.includes("x")) ||
+        (display.textContent.includes("-")) ||
+        (display.textContent.includes("+"))) {
+            display.replaceChildren();     
+    }
 }
 
 function del() {
@@ -80,13 +96,14 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b == 0) {
+        window.open("https://www.youtube.com/watch?v=NKmGVE85GUU&ab_channel=Veritasium");
+    } else {
     return a / b;
+    }
 }
 
 function operate(operator, operand1, operand2) {
-    // but operate should only be called if the equals sign is pressed
-    // should i use something similar to the event listener and target.choice + 
-        // switch case as in EaS?
     if (operator == "+") {
         result = add(operand1, operand2);
     } else if (operator == "-") {
@@ -94,18 +111,7 @@ function operate(operator, operand1, operand2) {
     } else if (operator == "x") {
         result = multiply(operand1, operand2);
     } else if (operator == "/") {
-        result =divide(operand1, operand2);
+        result = divide(operand1, operand2);
     } 
     return result;
 }
-
-
-// result becomes operand 1 
-//     however, if the clear is pressed, it restarts
-
-
-// = calculate
-// CE clear entry
-// AC all clear
-// % percentage
-// . button for floats/decimals (limit to once)
