@@ -19,7 +19,10 @@ buttons.addEventListener("click", (event) => {
 
     if (buttonID === "percent") {
         delOperator();
-        display.textContent = display.textContent / 100;
+        result = display.textContent / 100;
+        result = round(result);
+        display.innerText = result;
+        operand1 = result;
     }
 
     if (buttonID === "dot") {
