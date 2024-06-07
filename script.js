@@ -16,7 +16,6 @@ const buttons = calculator.querySelector(".buttons");
 buttons.addEventListener("click", (event) => {
     let buttonClass = event.target.className;
     let buttonID = event.target.id;
-    alert(buttonClass + buttonID);
     if (buttonID === "clear") {
         clear();
     }
@@ -27,10 +26,25 @@ buttons.addEventListener("click", (event) => {
     if (buttonClass === "number") {
         display.textContent += event.target.innerText;
     } 
+    if (buttonClass === "operate") {
+        operand1 = display.textContent;
+        console.log("op1: " + operand1);
+        operator = event.target.innerText;
+        display.textContent = operator;
+        // console.log("op: " + operator);
+        display.replaceChildren(); 
+        
+    }
+    if (buttonID === "equals") {
+        operand2 = display.textContent;
+        console.log(`op1 = ${operand1}  op: ${operator} op2 = ${operand2}`);
+        result = operate(operator, operand1, operand2);
+        display.innerText = result;
+        operand1 = result;
+    }
     // display.appendChild(displayVal); // but this will be a string
     // get it so you can remove the #ids from the number btns
 });
-
 
 function clear() {
     operand1 = "";
@@ -43,11 +57,11 @@ function clear() {
 function del() {
     let str = display.innerText.slice(0, -1);
     display.textContent = str;
-    console.log(str);
-    
 }
 
 function add(a, b) {
+    a = Number(a);
+    b = Number(b);
     return a + b;
 }
 

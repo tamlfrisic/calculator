@@ -17,7 +17,7 @@ body {
     box-sizing: border-box;
     border-radius: 20px;
     overflow: hidden;
-    border: solid black px;
+    border: solid #DDE1E1 1px;
     /* box-shadow: 1px 1px 20px #DDE1E1; */
     flex: 0 0 auto;
     background-color: darkslategray;
@@ -66,17 +66,22 @@ button {
 
 .row #zero {
     width: 180px;
+    border-bottom-left-radius: 20px;
+}
+
+.row #equals {
+    border-bottom-right-radius: 20px;
 }
 
 button:hover {
     background-color: darkslategray;
 }
 
-.operate {
+.operate, #equals {
     background-color: #725972;
 }
 
-.operate:hover {
+.operate:hover, #equals:hover {
     background-color: #4F2F4F;
 }
 
@@ -87,3 +92,5 @@ button:hover {
 .func:hover {
     background-color: #4F4F2F;
 }
+
+b
